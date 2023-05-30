@@ -1,0 +1,14 @@
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\bin\Debug\net6.0\Services.deps.json
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\bin\Debug\net6.0\Services.dll
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\bin\Debug\net6.0\Services.pdb
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\Services.csproj.AssemblyReference.cache
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\Services.AssemblyInfoInputs.cache
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\Services.AssemblyInfo.cs
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\Services.csproj.CoreCompileInputs.cache
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\Services.dll
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\refint\Services.dll
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\Services.pdb
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\ref\Services.dll
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\bin\Debug\net6.0\Services.runtimeconfig.json
+D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\Services\obj\Debug\net6.0\Services.genruntimeconfig.cache
