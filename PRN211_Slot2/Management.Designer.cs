@@ -52,10 +52,11 @@
             txtBranchNameEdit = new TextBox();
             txtAccountIDEdit = new TextBox();
             txtAccountNameEdit = new TextBox();
-            cboTypeId = new ComboBox();
-            cboTypeIDEdit = new ComboBox();
+            cboType = new ComboBox();
+            cboTypeEdit = new ComboBox();
             txtSearch = new TextBox();
             btnSearch = new Button();
+            btnRefresh = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvBankAccount).BeginInit();
             SuspendLayout();
             // 
@@ -73,7 +74,6 @@
             dgvBankAccount.Size = new Size(795, 188);
             dgvBankAccount.TabIndex = 1;
             dgvBankAccount.CellClick += dgvBankAccount_CellClick;
-            dgvBankAccount.CellDoubleClick += dgvBankAccount_CellDoubleClick;
             // 
             // txtAccountName
             // 
@@ -160,9 +160,9 @@
             label5.AutoSize = true;
             label5.Location = new Point(16, 581);
             label5.Name = "label5";
-            label5.Size = new Size(55, 20);
+            label5.Size = new Size(40, 20);
             label5.TabIndex = 12;
-            label5.Text = "TypeID";
+            label5.Text = "Type";
             // 
             // txtBranchName
             // 
@@ -208,9 +208,9 @@
             label8.AutoSize = true;
             label8.Location = new Point(447, 577);
             label8.Name = "label8";
-            label8.Size = new Size(55, 20);
+            label8.Size = new Size(40, 20);
             label8.TabIndex = 36;
-            label8.Text = "TypeID";
+            label8.Text = "Type";
             // 
             // label9
             // 
@@ -280,23 +280,22 @@
             txtAccountNameEdit.Size = new Size(250, 27);
             txtAccountNameEdit.TabIndex = 37;
             // 
-            // cboTypeId
+            // cboType
             // 
-            cboTypeId.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboTypeId.FormattingEnabled = true;
-            cboTypeId.Location = new Point(129, 577);
-            cboTypeId.Name = "cboTypeId";
-            cboTypeId.Size = new Size(250, 28);
-            cboTypeId.TabIndex = 42;
+            cboType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboType.FormattingEnabled = true;
+            cboType.Location = new Point(129, 577);
+            cboType.Name = "cboType";
+            cboType.Size = new Size(250, 28);
+            cboType.TabIndex = 42;
             // 
-            // cboTypeIDEdit
+            // cboTypeEdit
             // 
-            cboTypeIDEdit.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboTypeIDEdit.FormattingEnabled = true;
-            cboTypeIDEdit.Location = new Point(557, 577);
-            cboTypeIDEdit.Name = "cboTypeIDEdit";
-            cboTypeIDEdit.Size = new Size(250, 28);
-            cboTypeIDEdit.TabIndex = 43;
+            cboTypeEdit.FormattingEnabled = true;
+            cboTypeEdit.Location = new Point(557, 577);
+            cboTypeEdit.Name = "cboTypeEdit";
+            cboTypeEdit.Size = new Size(250, 28);
+            cboTypeEdit.TabIndex = 43;
             // 
             // txtSearch
             // 
@@ -317,15 +316,27 @@
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
+            // btnRefresh
+            // 
+            btnRefresh.Location = new Point(14, 278);
+            btnRefresh.Margin = new Padding(3, 4, 3, 4);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(107, 31);
+            btnRefresh.TabIndex = 46;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
             // Management
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(819, 740);
+            Controls.Add(btnRefresh);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
-            Controls.Add(cboTypeIDEdit);
-            Controls.Add(cboTypeId);
+            Controls.Add(cboTypeEdit);
+            Controls.Add(cboType);
             Controls.Add(dtpOpenDateEdit);
             Controls.Add(txtBranchNameEdit);
             Controls.Add(txtAccountIDEdit);
@@ -352,7 +363,6 @@
             Controls.Add(dgvBankAccount);
             Name = "Management";
             Text = "Management";
-            Load += Management_Load;
             ((System.ComponentModel.ISupportInitialize)dgvBankAccount).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -389,9 +399,10 @@
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox txtAccountNameEdit;
-        private ComboBox cboTypeId;
-        private ComboBox cboTypeIDEdit;
+        private ComboBox cboType;
+        private ComboBox cboTypeEdit;
         private TextBox txtSearch;
         private Button btnSearch;
+        private Button btnRefresh;
     }
 }

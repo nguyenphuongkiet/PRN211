@@ -13,6 +13,19 @@ namespace Services.Models
         public string BranchName { get; set; }
         public string TypeId { get; set; }
 
+        public BankAccount()
+        {
+
+        }
+        public BankAccount(string accountId, string accountName, DateTime? openDate, string branchName, string typeId)
+        {
+            AccountId = accountId;
+            AccountName = accountName;
+            OpenDate = openDate;
+            BranchName = branchName;
+            TypeId = typeId;
+        }
+
         public virtual AccountType Type { get; set; }
     }
 }

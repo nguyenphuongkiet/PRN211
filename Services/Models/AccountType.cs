@@ -17,5 +17,10 @@ namespace Services.Models
         public string TypeDesc { get; set; }
 
         public virtual ICollection<BankAccount> BankAccounts { get; set; }
+        public override string ToString()
+        {
+            return TypeName;
+        }
+
     }
 }

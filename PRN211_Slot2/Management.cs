@@ -6,174 +6,230 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace PRN211_Slot2
 {
     public partial class Management : Form
     {
-        int index;
-        private string _seacrh;
         BankAccountRepository _bankAccount;
         AccountTypeRepository _accountType;
+        List<BankAccount> _list;
         private BankAccount BankAccount { get; set; }
 
         public Management()
         {
             InitializeComponent();
 
-            _bankAccount = new BankAccountRepository();
             _accountType = new AccountTypeRepository();
 
-            var list = _bankAccount.GetAll();
+            var list = _accountType.GetAll();
+            cboType.DisplayMember = "typeName";
+            cboType.ValueMember = "typeId";
+            cboType.DataSource = list;
 
-            dgvBankAccount.DataSource = new BindingSource() { DataSource = list };
+            LoadList();
         }
-        private void LoadAccountBank(string search = "")
+
+        private void LoadList()
         {
+            _bankAccount = new BankAccountRepository();
+            _accountType = new AccountTypeRepository();
+            _list = _bankAccount.GetAll().Select(p =>
+            {
+                p.Type = _accountType.GetAll().FirstOrDefault(t => t.TypeId == p.TypeId);
+                return p;
+            })
+            .ToList();
+            dgvBankAccount.DataSource = new BindingSource() { DataSource = _list };
+
+        }
+        private void resetState()
+        {
+            txtAccountIDEdit.Text = "";
+            txtAccountNameEdit.Text = "";
+            dtpOpenDateEdit.Text = "";
+            txtBranchNameEdit.Text = "";
+            txtSearch.Text = "";
+            cboTypeEdit.SelectedIndex = 0;
+        }
+
+            private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string search = txtSearch.Text;
             var account = _bankAccount.GetAll().Where(x => x.BranchName.Contains(search));
             dgvBankAccount.DataSource = new BindingSource() { DataSource = account };
+
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            this._seacrh = txtSearch.Text;
-            LoadAccountBank(_seacrh);
-        }
-
-        private void Management_Load(object sender, EventArgs e)
-        {
-            var accountList = _accountType.GetAll().Select(x => x.TypeId);
-            cboTypeId.Items.Clear();
-            cboTypeId.Items.AddRange(accountList.ToArray());
-            cboTypeId.SelectedIndex = 0;
-        }
-
-        private void btnCreate_Click(object sender, EventArgs e)
+        private BankAccount getAccount()
         {
             try
             {
+                BankAccount account = null;
+                _accountType = new AccountTypeRepository();
+                String id = txtAccountID.Text;
+                String name = txtAccountName.Text;
+                String branch = txtBranchName.Text;
+                DateTime date = dtpOpenDate.Value;
+                String typeId = cboType.SelectedValue.ToString();
 
-                if (string.IsNullOrEmpty(txtAccountID.Text) || string.IsNullOrEmpty(txtAccountName.Text) || string.IsNullOrEmpty(txtBranchName.Text))
+
+                if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(branch))
                 {
                     throw new FormatException("All field must not be inputted");
                 }
-                else if (!txtBranchName.Text.Split(' ').All(word => char.IsUpper(word[0])))
+                else if (!branch.Split(' ').All(word => char.IsUpper(word[0])))
                 {
                     throw new FormatException("Each word in branch name must begin with a capital letter");
                 }
 
-                else if (txtBranchName.Text.Count() < 5)
+                else if (branch.Count() < 5)
                 {
                     throw new FormatException("Branch name must greater than 5 characters");
                 }
-                else if (_bankAccount.GetAll().FirstOrDefault(a => a.AccountId == txtAccountID.Text) != null)
+                else if (_bankAccount.GetAll().FirstOrDefault(a => a.AccountId == id) != null)
                 {
                     throw new FormatException("AccountID already existed");
                 }
                 else
                 {
-                    //add bank account
-                    var bankAccount = new BankAccount();
-                    bankAccount.AccountId = txtAccountID.Text;
-                    bankAccount.AccountName = txtAccountName.Text;
-                    bankAccount.BranchName = txtBranchName.Text;
-                    bankAccount.OpenDate = dtpOpenDate.Value;
-                    bankAccount.TypeId = cboTypeId.SelectedItem.ToString();
-
-                    _bankAccount.Add(bankAccount);
-
+                    account = new BankAccount(id, name, date, branch, typeId);
                 }
-
-
-                //bind datagridview to binding source
-                dgvBankAccount.DataSource = new BindingSource() { DataSource = _bankAccount.GetAll() };
-                MessageBox.Show("Add successfully", "Alert", MessageBoxButtons.OK);
-
+                return account;
             }
             catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message, "Alert", MessageBoxButtons.OK);
+                return null;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Fail to add", "Alert", MessageBoxButtons.OK);
+                MessageBox.Show("fail!", "Thong bao", MessageBoxButtons.OK);
+
+                return null;
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private BankAccount getAccountEdit()
         {
             try
             {
-                if (string.IsNullOrEmpty(txtAccountNameEdit.Text) || string.IsNullOrEmpty(txtBranchNameEdit.Text))
+                BankAccount account = null;
+                _accountType = new AccountTypeRepository();
+                String id = txtAccountIDEdit.Text;
+                String name = txtAccountNameEdit.Text;
+                String branch = txtBranchNameEdit.Text;
+                DateTime date = dtpOpenDateEdit.Value;
+                String typeId = cboTypeEdit.SelectedValue.ToString();
+
+
+                if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(branch))
                 {
                     throw new FormatException("All field must not be inputted");
                 }
-                else if (!txtBranchNameEdit.Text.Split(' ').All(word => char.IsUpper(word[0])))
+                else if (!branch.Split(' ').All(word => char.IsUpper(word[0])))
                 {
                     throw new FormatException("Each word in branch name must begin with a capital letter");
                 }
 
-                else if (txtBranchNameEdit.Text.Count() < 5)
+                else if (branch.Count() < 5)
                 {
                     throw new FormatException("Branch name must greater than 5 characters");
                 }
-                /*else if (_bankAccount.GetAll().First(a => a.AccountId == txtAccountIDEdit.Text) != null)
+                /*else if (_bankAccount.GetAll().FirstOrDefault(a => a.AccountId == id) != null)
                 {
                     throw new FormatException("AccountID already existed");
                 }*/
                 else
                 {
-                    var bankAccount = _bankAccount.GetAll()[dgvBankAccount.CurrentRow.Index];
-
-                    bankAccount.AccountId = txtAccountIDEdit.Text;
-                    bankAccount.AccountName = txtAccountNameEdit.Text;
-                    bankAccount.BranchName = txtBranchNameEdit.Text;
-                    bankAccount.OpenDate = dtpOpenDateEdit.Value;
-                    bankAccount.TypeId = cboTypeIDEdit.Text;
-
-                    _bankAccount.Update(bankAccount);
-                    dgvBankAccount.Refresh();
-                    MessageBox.Show("Update Successfully!", "Alert", MessageBoxButtons.OK);
-
+                    account = new BankAccount(id, name, date, branch, typeId);
                 }
-            }
-            catch (FormatException ex)
+                return account;
+            }catch(FormatException ex)
             {
                 MessageBox.Show(ex.Message, "Alert", MessageBoxButtons.OK);
+                return null;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Fail to update", "Alert", MessageBoxButtons.OK);
+                MessageBox.Show("fail!", "Thong bao", MessageBoxButtons.OK);
+
+                return null;
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            _bankAccount = new BankAccountRepository();
+            BankAccount account = getAccount();
+            if (account == null)
+            {
+
+            }
+            else
+            {
+                _bankAccount.Add(account);
+                LoadList();
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            _bankAccount = new BankAccountRepository();
+            BankAccount account = getAccountEdit();
+            if (account == null)
+            {
+
+            }
+            else
+            {
+                _bankAccount.Update(account);
+                LoadList();
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var account = _bankAccount.GetAll()[dgvBankAccount.CurrentRow.Index];
-            _bankAccount.Delete(account);
-            dgvBankAccount.DataSource = new BindingSource() { DataSource = _bankAccount.GetAll() };
+            String id = txtAccountIDEdit.Text;
+            _bankAccount = new BankAccountRepository();
+            BankAccount account = _bankAccount.GetAccount(id);
+            if (account != null)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to detele the account with id: " + id, "Thong bao", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    _bankAccount.Delete(account);
+                    LoadList();
+                    resetState();
+                }
+            }
         }
 
         private void dgvBankAccount_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var account = _bankAccount.GetAll()[dgvBankAccount.CurrentRow.Index];
+            var account = _list[e.RowIndex];
             txtAccountIDEdit.Text = account.AccountId.ToString();
             txtAccountNameEdit.Text = account.AccountName.ToString();
             txtBranchNameEdit.Text = account.BranchName.ToString();
             dtpOpenDateEdit.Value = account.OpenDate.Value;
-            cboTypeIDEdit.Text = account.TypeId.ToString();
-            var accountList = _accountType.GetAll().Select(x => x.TypeId);
-            cboTypeIDEdit.Items.Clear();
-            cboTypeIDEdit.Items.AddRange(accountList.ToArray());
+            cboTypeEdit.Text = account.Type.ToString();
+            var list = _accountType.GetAll();
+            cboTypeEdit.DisplayMember = "typeName";
+            cboTypeEdit.ValueMember = "typeId";
+            cboTypeEdit.DataSource = list;
+
         }
 
-        private void dgvBankAccount_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            dgvBankAccount.Refresh();
+            LoadList();
         }
     }
 }

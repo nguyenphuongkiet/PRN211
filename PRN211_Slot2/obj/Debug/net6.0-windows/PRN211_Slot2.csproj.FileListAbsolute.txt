@@ -4,7 +4,6 @@ D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\bin\Debug\net6.0-windows\PRN211_Slot2.dll
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\bin\Debug\net6.0-windows\PRN211_Slot2.pdb
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\PRN211_Slot2.csproj.AssemblyReference.cache
-D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\PRN211_Slot2.Form1.resources
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\PRN211_Slot2.csproj.GenerateResource.cache
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\PRN211_Slot2.GeneratedMSBuildEditorConfig.editorconfig
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\PRN211_Slot2.AssemblyInfoInputs.cache
@@ -17,7 +16,6 @@ D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\ref\PRN211_Slot2.dll
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\PRN211_Slot2.Login.resources
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\PRN211_Slot2.Management.resources
-D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\obj\Debug\net6.0-windows\PRN211_Slot2.Calculator.resources
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\bin\Debug\net6.0-windows\FluentValidation.dll
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\bin\Debug\net6.0-windows\FluentValidation.AspNetCore.dll
 D:\FPTU2022_2025\SECOND YEAR\SUMMER2023\Backend .NET\Source\FirstDay\PRN211_Slot2\PRN211_Slot2\bin\Debug\net6.0-windows\FluentValidation.DependencyInjectionExtensions.dll
